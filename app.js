@@ -1,3 +1,4 @@
+const pokemon = require('./data.js');
 const game = {
     party: [],
     gyms: [
@@ -17,12 +18,7 @@ const game = {
     ],
   
   }
-  // console.log(game);
-  
-  const pokemon = require('./data.js');
-  
-  // const ex = exercise
-  // function()
+    
   /*
   Exercise 3
   1. Add a new property to the `game` object. Let's call it "difficulty".
@@ -36,8 +32,6 @@ const game = {
   
   const gymsArray = game.gyms;
   for (let i = 0; i < gymsArray.length; i++) {
-    // console.log(gymsArray[i], "gymsArray 1");
-    // console.log(gymsArray[i].difficulty);
     if (gymsArray[i].difficulty > 6) {
       gymsArray[i].hurdle = "hard";
     } else if (gymsArray[i].difficulty >= 5) {
@@ -46,17 +40,8 @@ const game = {
       gymsArray[i].hurdle = "easy";
     }
   }
-  // console.log(gymsArray, "gym Array");
-  
-  // if (gymsArray.difficulty >= 6) {
-  //   gymsArray.hurdle = "hard";
-  // } else if (gymsArray.difficulty  >= 5) {
-  //   gymsArray.hurdle = "Medium";
-  // } else {
-  //   gymsArray.hurdle = "easy";
-  // }
-  
-  // console.log(gymsArray, "answer for exercise 3"); ......
+  console.log(gymsArray, "gym Array");
+
   
   console.log("_____exersise 4_______");
   /*
@@ -80,16 +65,12 @@ const game = {
   Solve Exercise 5 here:
   */
   
-  // game.party.push(pokemon[1], pokemon[6], pokemon [25], pokemon[100]); // i could still use .push() array method as well
-  // console.log(game.party, "5.1");
-  
-  // considering the type: water, forEach and .push() method would be applied
   pokemon.forEach(pokemon => {
-    if (pokemon.type === "water") {
+    if (pokemon.type === "water" && game.party.length < 4) {
       game.party.push(pokemon)
     }
   });
-  // console.log(game.party, "5.2"); ...
+  console.log(game.party, "5.2");
   
   console.log("_____exersise 6_______");
   /*
@@ -100,15 +81,13 @@ const game = {
   
   Solve Exercise 6 here:
   */
-  
-  const gyms_6 = game.gyms;
+    const gyms_6 = game.gyms;
   gyms_6.forEach(gym => {
     if (gym.difficulty < 3) {
-      // console.log(gym, "6.1")
       gym.completed = true
     }
   });
-  // console.log(gyms_6, "6.2");
+  console.log(gyms_6, "6.2");
   
   console.log("_____exersise 7_______");
   /*
@@ -116,94 +95,37 @@ const game = {
   1. Evolve the starter Pokémon you added to your party earlier. Each starter Pokémon evolves into a specific one.
   2. How would you replace the current starter Pokémon in your party with its evolved form?
   */
-  
-  // const evolvePokemon = pokemon => { if (pokemon.starter === "true") {
-  //   pokemon.starter = "oil";
-  // } else if (pokemon.starter === "false") {
-  //   pokemon.starter = "gold";
-  
-  // }
-  // };
-  // game.party.forEach(evolvePokemon);
-  // console.log("Evolved starter", game.party);
-  
-  // Pokemon 1: Bulbasaur evolves into Pokemon 2: Ivysaur
-  // Pokemon 4: Charmander evolves into Pokemon 5: Charmeleon
-  // Pokemon 7: Squirtle evolves into Pokemon 8: Wartortle
-  // Pokemon 25: Pikachu evolves into Pokemon 26: Raichu
-  
-  function evolveStarterPokemon(party) {
-    // Loop through the party to find the starter Pokémon
-    party.forEach((pokemon, index) => {
-      if (pokemon.starter) {
-        let evolvedPokemon;
-  
-        // Determine the evolved Pokémon
-        switch (pokemon.id) {
-          case 1: // Bulbasaur
-            evolvedPokemon = { id: 2, name: "Ivysaur", starter: false };
-            break;
-          case 4: // Charmander
-            evolvedPokemon = { id: 5, name: "Charmeleon", starter: false };
-            break;
-          case 7: // Squirtle
-            evolvedPokemon = { id: 8, name: "Wartortle", starter: false };
-            break;
-          case 25: // Pikachu
-            evolvedPokemon = { id: 26, name: "Raichu", starter: false };
-            break;
-          default:
-            return; // No evolution found
-        }
-  
-        // Replace the current starter Pokémon with its evolved form
-        party.splice(index, 1, evolvedPokemon);
-      }
-    });
-  }
-  evolveStarterPokemon(game.party)
-  // console.log(game.party, "ex 7 Wisdom")
-  
-  const starterIdx = game.party.indexOf(game.party.find(pokemon => pokemon.starter === true))
-  const starterName = game.party[starterIdx].name
-  // console.log(starterName, "is feeling weird.  He's Evolving!!!")
-  const currentStarter = pokemon.find(pokemon => pokemon.number === game.party[starterIdx].number)
-  game.party.splice(starterIdx, 1, pokemon[currentStarter.number])
+  // REFERENCE: TO HOW FIND AND INDEXOF IS BEING USED
+  // const starterPokemon = game.party.find(pokemon => pokemon.starter === true)
+  // const starterIdx = game.party.indexOf(starterPokemon)
+  // const starterName = game.party[starterIdx].name
+  // // console.log(starterName, "is feeling weird.  He's Evolving!!!")
+  // const currentStarter = pokemon.find(pokemon => pokemon.number === game.party[starterIdx].number)
+  // game.party.splice(starterIdx, 1, pokemon[currentStarter.number])
   // console.log(starterName, "has evolved into", game.party[starterIdx].name)
-  
-  // let evolvedPokemon = {};
-  // for (let i = 0; i < game.party.length; i++) {
-  //   if (pokemon[i].starter) {
-  //     switch (pokemon[i].number) {
-  //       case 1:
-  //         evolvedPokemon = { number: 2, name: "Ivysaur", starter: false }
-  //         break;
-  //       case 4:
-  //         evolvedPokemon = { number: 5, name: "Charmeleon", starter: false }
-  //         break;
-  //       case 7:
-  //         evolvedPokemon = { number: 8, name: "Wartortle", starter: false }
-  //         break;
-  //       case 25:
-  //         evolvedPokemon = { number: 26, name: "Raichu", starter: false }
-  //         break;
-  //       default:
-  //         return
-  //     }
-      //   if (pokemon[i].number === 1) {
-      //     evolvedPokemon = { number: 2, name: "Ivysaur", starter: false }
-      //   }
-      // } else if (pokemon[i].number === 4) {
-      //   evolvedPokemon = { number: 5, name: "Charmeleon", starter: false }
-      // } else if (pokemon[i].number === 7) {
-      //   evolvedPokemon = { number: 8, name: "Wartortle", starter: false }
-      // } else if (pokemon[i].number === 25) {
-      //   evolvedPokemon = {number: 26, name: "Raichu", starter: false }
-  
-  //   }
-  
-  // }
-  // console.log(evolvedPokemon, "evolvedPokemon")
+ 
+  game.party.forEach((pokemon, index) => {
+    if (pokemon.starter) {
+      let evolvedPokemon;
+
+// Determine the evolved Pokémon using if-else
+      if (pokemon.number === 1) { // Bulbasaur
+        evolvedPokemon = { number: 2, name: "Ivysaur", starter: false };
+      } else if (pokemon.number === 4) { // Charmander
+        evolvedPokemon = { number: 5, name: "Charmeleon", starter: false };
+      } else if (pokemon.number === 7) { // Squirtle
+        evolvedPokemon = { number: 8, name: "Wartortle", starter: false };
+      } else if (pokemon.number === 25) { // Pikachu
+        evolvedPokemon = { number: 26, name: "Raichu", starter: false };
+      } else {
+        return; // No evolution found
+      }
+
+      // Replace the current starter Pokémon with its evolved form
+      game.party.splice(index, 1, evolvedPokemon);
+    }
+  });
+  console.log(game.party, "MDN****************")
   
   console.log("_____exersise 8_______");
   /*
@@ -214,9 +136,8 @@ const game = {
   Solve Exercise 8 here:
   */
   
-  const pokemonName = pokemon
-  for (let i = 0; i < pokemonName.length; i++) {
-    // console.log(pokemonName[i].name)
+  for (let i = 0; i < game.party.length; i++) {
+    console.log(game.party[i].name)
   }
   
   console.log("_____exersise 9_______");
@@ -227,16 +148,11 @@ const game = {
   
   Solve Exercise 9 here:
   */
-  //  prining out all the starter pokemon from the pokemon array
-  const pokemonStarter = pokemon;
-  for (let i = 0; i < pokemonStarter.length; i++) {
-    // console.log(pokemonStarter[i].starter, "Yaweh")
-  }
   
   // Identifing the starters pokemon that are true and printing out their names
-  for (let i = 0; i < pokemonStarter.length; i++) {
-    if (pokemonStarter[i].starter === true) {
-      // console.log(pokemonName[i].name, "Yeshua");
+  for (let i = 0; i < pokemon.length; i++) {
+    if (pokemon[i].starter === true) {
+      console.log(pokemon[i].name);
     }
   }
   
@@ -252,6 +168,7 @@ const game = {
   
   Solve Exercise 10 here:
   */
+  // REFERENCE: how to use Object.assign
   // Object.assign(game, {
   //   catchPokemon(pokemonObj) {
   // game.party = [...game.party, pokemonObj]  //"..." operator creates a new array that includes all existing objects in the game.party
@@ -264,8 +181,8 @@ const game = {
   game.catchPokemon = function(pokemonObj) {
     game.party.push(pokemonObj)
   }
-  console.log(game)
-  console.log(pokemon[0], "ex 10")
+ game.catchPokemon(pokemon[0])
+  console.log(game.party)
   
   console.log("_____exersise 11_______");
   /*
@@ -280,32 +197,6 @@ const game = {
   
   Solve Exercise 11 here:
   */
-  //support time question: I had a result different from what I had in mind. is this what the result should be
-  //  for (let i = 0; i < pokemon.length; i++) { 
-  //   Object.assign(game, {
-  //   catchPokemon() {
-  //     if (pokemon[i].number > 0) {// check if pokemon's number is greater than 0 
-  //      pokemon[i].number -= 1;
-  //      console.log(pokemon[i])
-  //                 } else {
-  //             console.log("No more Pokemon to catch")
-  //           }
-  //   }
-  //  })
-      
-  //   };
-   
-  // game.catchPokemon();
-  // console.log(pokemon[i], "11.1")
-  
-  // const gameItems = game.items;
-  // let pokeball = gameItems.find(item => item.name === "pokeball");
-  // if (pokeball) {
-  //   pokeball.quantity += 10;
-  // } else {
-  //   console.log("Pokeball not found")
-  // }
-  // console.log(gameItems, "11.2");
   
   game.catchPokemon = function(pokemonObj){
     game.party.push(pokemonObj);
@@ -318,7 +209,7 @@ const game = {
         }
     
   game.catchPokemon(pokemon[4]);
-  console.log(game.items, "decreases the quantity")
+
   
   
   console.log("_____exersise 12_______");
@@ -363,18 +254,15 @@ const game = {
   
   Solve Exercise 13 here:
   */
-  const gymTally = {completed: 0, incompleted: 0};
-  game.gymStatus = function(){
-    // game.gyms.push(gymTally);
-    
+  game.gymStatus = function() {
+    const gymTally = {completed: 0, incompleted: 0};
     game.gyms.forEach(gym => {
       if (gym.completed) {
   gymTally.completed++;
       } else {
         gymTally.incompleted++;
       }
-      
-    });
+          });
     console.log(gymTally, "does the counting");
   };
   game.gymStatus();
@@ -392,14 +280,11 @@ const game = {
     - return the found number of Pokemon in the party.
   
   Solve Exercise 14 here:
-  */const pokemonCount = {pokemon: 0};
-  game.partyCount = function(){
-  game.party.forEach(party => {
-  if (pokemon) {
-    pokemonCount.pokemon++
-  }
-  });
-  console.log(pokemonCount, "Exercise 14, almost there")
+  */
+
+  game.partyCount = function() {
+  const pokemonCount = game.party.length
+  console.log(pokemonCount)
   }
   game.partyCount();
   
@@ -412,16 +297,13 @@ const game = {
   
   Solve Exercise 15 here:
   */
-  
-  const gymDiffs = game.gyms;
-  gymDiffs.forEach(gymDiff => {
-  if(gymDiff.difficulty < 8) {
-  gymDiff.completed = true
-  } else {
-    gymDiff.completed = false
+
+  game.gyms.forEach(gym => {
+  if(gym.difficulty < 8) {
+  gym.completed = true
   };
   });
-  console.log(gymDiffs)
+  console.log(game.gyms)
    
   console.log("============================== Exercise 16 =================================");
   
@@ -433,4 +315,4 @@ const game = {
   Solve Exercise 16 here:
   */
   
-  console.log(game, "final changes")
+  // console.log(game, "final changes")

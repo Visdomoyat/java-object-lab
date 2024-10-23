@@ -154,6 +154,3 @@ const pokemon = [
   ]
   module.exports = pokemon
 
-// console.dir(pokemon, {maxArrayLength: null})
-const poke = pokemon[58].name
-// 
